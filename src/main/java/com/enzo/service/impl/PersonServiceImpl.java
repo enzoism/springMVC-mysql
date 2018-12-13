@@ -6,11 +6,19 @@ import com.enzo.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
+
 @Service
 public class PersonServiceImpl implements PersonService {
-    @Autowired(required=false)
+    @Resource
     private PersonMapperDao personMapperDao;
     public Person findPersonById(long id) {
-        return personMapperDao.findPersonById(id);
+        Person person = null;
+        try{
+            person = personMapperDao.findPersonById(id);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return person;
     }
 }
