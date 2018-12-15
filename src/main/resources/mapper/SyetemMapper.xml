@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 设置为IUserDao接口方法提供sql语句配置 -->
+<mapper namespace="com.huawei.prometheus.dao.cac.SystemDao">
+
+    <insert id="addSystem" parameterType="com.huawei.prometheus.entity.cac.System" >
+        INSERT INTO SYSTEMS (
+        sysID,
+        sysName,
+        sysDescribe
+        )VALUES(
+        #{sysID,jdbcType=VARCHAR},
+        #{sysName,jdbcType=VARCHAR},
+        #{sysDescribe,jdbcType=VARCHAR}
+        );
+    </insert>
+
+    <insert id="updateSystem" parameterType="com.huawei.prometheus.entity.cac.System" >
+        update SYSTEMS
+        <set >
+            <if test="sysID != null" > SYSID = #{sysID},</if>
+            <if test="sysName != null" > SYSNAME = #{sysName},</if>
+            <if test="sysDescribe != null" > SYSDESCRIBE = #{sysDescribe},</if>
+        </set>
+        where SYSID = #{sysID,jdbcType=VARCHAR}
+    </insert>
+
+    <select id="querySystem" resultType="com.huawei.prometheus.entity.cac.System" parameterType="java.math.BigDecimal">
+        SELECT
+        <include refid="com.huawei.prometheus.dao.cac.ConstantDao.BASE_SYSTEMS_DETAIL" />
+        FROM SYSTEMS sys
+        where sys.SYSID = #{sysID,jdbcType=VARCHAR}
+    </select>
+
+    <select id="querySystemList" resultType="com.huawei.prometheus.entity.cac.System" >
+        SELECT
+        <include refid="com.huawei.prometheus.dao.cac.ConstantDao.BASE_SYSTEMS_DETAIL" />
+        FROM SYSTEMS sys
+    </select>
+</mapper>
