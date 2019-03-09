@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 此配置项专门存放变量 -->
+<mapper namespace="com.enzo.dao.ConstantDao">
+    <!-- ******* SyetemMapper ******* -->
+    <sql id="BASE_SYSTEMS_DETAIL">
+        sys.sysID,
+        sys.sysName,
+        sys.sysDescribe
+    </sql>
+</mapper>
